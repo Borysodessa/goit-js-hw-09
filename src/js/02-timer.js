@@ -1,7 +1,9 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
-console.log()
+
 const buttonStart = document.querySelector('[data-start]');
 let dataDays = document.querySelector('[data-days]');
 let dataHours = document.querySelector('[data-hours]');
@@ -18,7 +20,11 @@ const options = {
   onClose(selectedDates) {
     console.log(selectedDates[0]);
     if (Date.parse(selectedDates[0]) < Date.parse(options.defaultDate)) {
-      alert("Please choose a date in the future");
+      Report.failure(
+        'Past date',
+        'Please choose a date in the future',
+        'Okay',
+      );
     } else {
       buttonStart.removeAttribute('disabled');
     }
@@ -28,7 +34,6 @@ const options = {
     function onstartTimer(evt) {
       const timerId = setInterval(() => {
         ms -= 1000;
-        console.log(ms);
 
         function addLeadingZero(value) {
           dataDays.textContent = String(convertMs(ms).days).padStart(value, '0');
@@ -59,7 +64,6 @@ const options = {
 
         if (ms === 0) {
           clearTimeout(timerId)
-
         }
       }, 1000);
     }
