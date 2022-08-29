@@ -19,7 +19,7 @@ function onCallCreatePromise(event) {
       })
       .catch(({position, delay}) => {
         setTimeout(() => {
-          Notify.success(`❌ Rejected promise ${position} in ${delay}ms`);
+          Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         }, delay);
       });
     delay += step
