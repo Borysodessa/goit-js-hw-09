@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
-import { Report } from 'notiflix/build/notiflix-report-aio';
+import {Report} from 'notiflix/build/notiflix-report-aio';
 
 
 const buttonStart = document.querySelector('[data-start]');
@@ -41,6 +41,7 @@ const options = {
           dataMinutes.textContent = String(convertMs(ms).minutes).padStart(value, '0');
           dataSeconds.textContent = String(convertMs(ms).seconds).padStart(value, '0');
         }
+
         addLeadingZero(2);
 
         function convertMs(ms) {
@@ -60,6 +61,7 @@ const options = {
 
           return {days, hours, minutes, seconds};
         }
+
         convertMs(ms);
 
         if (ms === 0) {
@@ -67,8 +69,9 @@ const options = {
         }
       }, 1000);
     }
+
     buttonStart.addEventListener('click', onstartTimer);
-    },
+  },
 };
 const deltaTimePickerFlat = flatpickr("#datetime-picker", options);
 
